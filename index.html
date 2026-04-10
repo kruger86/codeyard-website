@@ -1690,6 +1690,12 @@
       .proc-sec { padding: 5rem 0; }
     }
 
+    /* ── Mobile: hide navbar, smaller hero text ── */
+    @media(max-width:768px) {
+      nav { display:none; }
+      h1.hero-h { font-size: clamp(1.75rem, 7vw, 2.4rem); }
+    }
+
     /* ── Mobile: Gantt vertical stacked layout ── */
     @media(max-width:768px) {
       .gantt-card { padding:1.25rem 1rem 1.25rem; overflow:visible; }
