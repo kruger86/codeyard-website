@@ -1681,6 +1681,13 @@
       .fgrid { grid-template-columns:1fr; }
       .about-stats { flex-direction:column; gap:1rem; }
     }
+
+    /* ── Mobile: 50% smaller section spacing ── */
+    @media(max-width:768px) {
+      .sec { padding: 5rem 0; }
+      .special-text-sec { margin-top:5rem; margin-bottom:9rem; }
+      .proc-sec { padding: 5rem 0; }
+    }
   </style>
 </head>
 <body>
@@ -3671,6 +3678,27 @@ const PROJECTS = [
     }, 220);
   }
 })();
+
+// ── Mobile video autoplay ──
+if (/Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+  function playAllVideos() {
+    document.querySelectorAll('video').forEach(function(v) {
+      v.muted = true;
+      v.play().catch(function(){});
+    });
+  }
+  playAllVideos();
+  document.addEventListener('touchstart', playAllVideos, { once: true, passive: true });
+  // Also play videos when they enter viewport
+  if ('IntersectionObserver' in window) {
+    var vidObserver = new IntersectionObserver(function(entries) {
+      entries.forEach(function(e) {
+        if (e.isIntersecting) { e.target.muted = true; e.target.play().catch(function(){}); }
+      });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('video').forEach(function(v) { vidObserver.observe(v); });
+  }
+}
 </script>
 </body>
 </html>
