@@ -1688,6 +1688,19 @@
       .special-text-sec { margin-top:5rem; margin-bottom:9rem; }
       .proc-sec { padding: 5rem 0; }
     }
+
+    /* ── Mobile: Gantt horizontal scroll ── */
+    @media(max-width:768px) {
+      .gantt-card { padding:1.25rem 1rem 1.25rem; overflow:hidden; }
+      .gantt-tl-scroll {
+        overflow-x:auto;
+        -webkit-overflow-scrolling:touch;
+        scrollbar-width:none;
+        padding-bottom:0.5rem;
+      }
+      .gantt-tl-scroll::-webkit-scrollbar { display:none; }
+      .gantt-tl { min-width:560px; }
+    }
   </style>
 </head>
 <body>
@@ -2075,6 +2088,7 @@
         <span class="gantt-hd-title">Workflow plan</span>
         <span class="gantt-hd-dur">3,5 month</span>
       </div>
+      <div class="gantt-tl-scroll">
       <div class="gantt-tl">
         <!-- Date ruler -->
         <div class="gantt-dates">
@@ -2130,6 +2144,7 @@
             </div>
           </div>
         </div>
+      </div>
       </div>
     </div>
   </div>
