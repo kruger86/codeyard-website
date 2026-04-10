@@ -1575,6 +1575,7 @@
       margin-top:10rem;margin-bottom:18rem;
       display:flex;align-items:center;justify-content:center;
       min-height:160px;
+      contain:layout;
     }
     .special-text-wrap {
       text-align:center;
@@ -3377,9 +3378,25 @@ const PROJECTS = [
       }, delayMs);
     }
 
+    // Pre-measure final text heights to prevent layout shift during animation
+    function reserveSpace() {
+      LINES.forEach(function(ln) {
+        if (!ln.el) return;
+        ln.el.textContent = ln.text;
+        ln.el.style.minHeight = ln.el.offsetHeight + 'px';
+        ln.el.textContent = '\u00A0';
+      });
+      var wrap = LINES[0].el && LINES[0].el.parentElement;
+      if (wrap) {
+        // Also lock the wrap height so the section never reflows
+        LINES.forEach(function(ln) { if (ln.el) ln.el.textContent = ln.text; });
+        wrap.style.minHeight = wrap.offsetHeight + 'px';
+        LINES.forEach(function(ln) { if (ln.el) ln.el.textContent = '\u00A0'; });
+      }
+    }
+
     function startAll() {
-      LINES[0].el && (LINES[0].el.textContent = '\u00A0');
-      LINES[1].el && (LINES[1].el.textContent = '\u00A0');
+      reserveSpace();
       animateLine(LINES[0].el, LINES[0].text, 0);
       animateLine(LINES[1].el, LINES[1].text, 320);
     }
