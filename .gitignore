@@ -1,0 +1,8 @@
+.DS_Store
+*.zip
+cinematic-site-components-master/
+*.json
+image.png
+images-links.txt
+links.txt
+.claude/
