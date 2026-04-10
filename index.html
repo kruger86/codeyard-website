@@ -1690,10 +1690,13 @@
       .proc-sec { padding: 5rem 0; }
     }
 
-    /* ── Mobile: hide navbar, smaller hero text ── */
+    /* ── Mobile: hide navbar, smaller hero text, smaller hero section ── */
     @media(max-width:768px) {
       nav { display:none; }
       h1.hero-h { font-size: clamp(1.75rem, 7vw, 2.4rem); }
+      .hero-wrap { height: 60vh; }
+      .hero-sticky { height: 60vh; }
+      .hero-cnt { padding: 2rem 1.5rem 2.5rem; }
     }
 
     /* ── Mobile: Gantt vertical stacked layout ── */
