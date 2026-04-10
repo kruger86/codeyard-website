@@ -1694,8 +1694,8 @@
     @media(max-width:768px) {
       nav { display:none; }
       h1.hero-h { font-size: clamp(1.75rem, 7vw, 2.4rem); }
-      .hero-wrap { height: 60vh; }
-      .hero-sticky { height: 60vh; }
+      .hero-wrap { height: 72vh; }
+      .hero-sticky { height: 72vh; }
       .hero-cnt { padding: 2rem 1.5rem 2.5rem; }
     }
 
@@ -2654,6 +2654,15 @@ if (heroVid) {
   const L1 = 'Digitális termékek,';
   const L2 = 'amik számítanak.';
   const SPEED = 55;
+
+  // On mobile: skip animation, show text immediately
+  if (window.innerWidth <= 768) {
+    el1.textContent = L1;
+    el2.textContent = L2;
+    if (cur) { cur.style.display = 'none'; }
+    if (btn) { btn.style.opacity = '1'; btn.style.transform = 'translateY(0)'; }
+    return;
+  }
 
   // Hide btn initially
   if (btn) { btn.style.opacity = '0'; btn.style.transform = 'translateY(12px)'; btn.style.transition = 'opacity 0.6s ease, transform 0.6s ease'; }
