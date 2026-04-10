@@ -1689,17 +1689,27 @@
       .proc-sec { padding: 5rem 0; }
     }
 
-    /* ── Mobile: Gantt horizontal scroll ── */
+    /* ── Mobile: Gantt vertical stacked layout ── */
     @media(max-width:768px) {
-      .gantt-card { padding:1.25rem 1rem 1.25rem; overflow:hidden; }
-      .gantt-tl-scroll {
-        overflow-x:auto;
-        -webkit-overflow-scrolling:touch;
-        scrollbar-width:none;
-        padding-bottom:0.5rem;
+      .gantt-card { padding:1.25rem 1rem 1.25rem; overflow:visible; }
+      .gantt-tl-scroll { overflow:visible; }
+      /* Hide date ruler and now-line on mobile */
+      .gantt-dates, .gantt-now-line, .gantt-now-arrow { display:none; }
+      /* Vertical stacked phases */
+      .gantt-tl { min-width:0; position:static; }
+      .gantt-phases { gap:0.6rem; }
+      .gphase-row { position:static; height:auto; }
+      .gphase {
+        position:static !important;
+        width:100% !important;
+        left:auto !important;
+        height:auto;
+        min-height:44px;
+        padding:0.65rem 1rem;
+        white-space:normal;
+        justify-content:space-between;
       }
-      .gantt-tl-scroll::-webkit-scrollbar { display:none; }
-      .gantt-tl { min-width:560px; }
+      .gphase-tip { display:none; }
     }
   </style>
 </head>
